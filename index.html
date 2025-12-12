@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Messy Ruby Page!!!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fffb9c;
+      font-family: Comic Sans MS, "Comic Sans", cursive, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .bg-rubies {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.25;
+      background-image: url("Ruby_updated.png");
+      background-size: 120px;
+      background-repeat: repeat;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff00aa;
+      text-shadow: 4px 4px 0 #00ffea;
+      margin: 20px;
+      transform: rotate(-3deg);
+    }
+
+    .scribble-box {
+      border: 8px dashed #00a2ff;
+      background: #fff2cc;
+      padding: 20px;
+      margin: 15px;
+      transform: rotate(2deg);
+    }
+
+    .scribble-box:nth-child(odd) {
+      transform: rotate(-4deg);
+      background: #ffd7ff;
+      border-color: #ff5a5a;
+    }
+
+    .big-button {
+      display: inline-block;
+      padding: 20px 30px;
+      margin: 15px;
+      background: #5aff7b;
+      color: #000;
+      font-size: 1.4rem;
+      border-radius: 20px;
+      border: 6px solid #0066ff;
+      box-shadow: 5px 5px 0 #000;
+      cursor: pointer;
+      transform: rotate(5deg);
+    }
+
+    .big-button:active {
+      transform: rotate(5deg) scale(0.95);
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .random-ruby {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      background-image: url("Ruby_updated.png");
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+    }
+
+    .wiggle {
+      animation: wiggle 0.4s infinite alternate;
+    }
+
+    @keyframes wiggle {
+      from { transform: translateX(-3px) rotate(-3deg); }
+      to   { transform: translateX(3px) rotate(3deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-rubies"></div>
+
+  <h1>HI I MADE THIS!!!</h1>
+
+  <div class="scribble-box">
+    <p>i like RUBY!!! and BUTTONS!!! and CLICKING!!!!</p>
+  </div>
+
+  <div class="scribble-box">
+    <p>click the big green button to make MORE RUBYS go EVERYWHERE!!!</p>
+  </div>
+
+  <button class="big-button" id="moreRubies">MORE RUBY!!!</button>
+
+  <script>
+    function randomRuby() {
+      const ruby = document.createElement("div");
+      ruby.className = "random-ruby wiggle";
+      const x = Math.random() * (window.innerWidth - 60);
+      const y = Math.random() * (window.innerHeight - 60);
+      ruby.style.left = x + "px";
+      ruby.style.top = y + "px";
+      document.body.appendChild(ruby);
+
+      // remove after a while so it doesn't get too crazy
+      setTimeout(() => ruby.remove(), 8000);
+    }
+
+    document.getElementById("moreRubies").addEventListener("click", () => {
+      for (let i = 0; i < 8; i++) {
+        randomRuby();
+      }
+    });
+
+    // start with a few
+    for (let i = 0; i < 5; i++) randomRuby();
+  </script>
+</body>
+</html>
